@@ -70,6 +70,14 @@ output:
     inverted: true
     min_power: 0.1 # To prevent the backlight from being too dim
     max_power: 0.8 # To prevent overheating due to excessive lighting
+
+  - id: internal_relay_1
+    platform: gpio
+    pin: GPIO32
+    
+  - id: internal_relay_2
+    platform: gpio
+    pin: GPIO46    
     
 light:
   - platform: monochromatic
@@ -84,9 +92,10 @@ light:
 #-------------------------------------------
 i2c:
   - id: bus_a
-    sda: 7
-    scl: 8
+    sda: GPIO7
+    scl: GPIO8
     scan: true
+    frequency: 400kHz
 
 touchscreen:
   platform: gt911
@@ -113,7 +122,7 @@ display:
     id: my_display
     model: WAVESHARE-P4-86-PANEL
   
-# Special LVGL settings for this display  
+# Special LVGL settings required for this display  
 lvgl:
   buffer_size: 100%
   byte_order: little_endian    
